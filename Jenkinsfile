@@ -16,5 +16,14 @@ pipeline {
             bat 'npm run test'
             }
         }
+        stage('NPM deploy docker image tests') {
+            steps {
+            docker build -t napetkov/student_app:%BUILD_NUMBER% .
+            docker login -u %user%--password %pass%
+            docker push napetkov/student_app:%BUILD_NUMBER%
+            docker tag napetkov/student_app:%BUILD_NUMBER% napetkov/student_app:latest
+            docker push napetkov/student_app:latest
+            }
+        }
     }
 }
