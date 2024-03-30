@@ -19,7 +19,7 @@ pipeline {
         stage('NPM deploy docker image tests') {
             steps {
             bat 'docker build -t napetkov/student_app:%BUILD_NUMBER% .'
-            bat 'docker login -u %user%--password %pass%'
+            // bat 'docker login -u %user%--password %pass%'
             bat 'docker push napetkov/student_app:%BUILD_NUMBER%'
             bat 'docker tag napetkov/student_app:%BUILD_NUMBER% napetkov/student_app:latest'
             bat 'docker push napetkov/student_app:latest'
