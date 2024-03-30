@@ -16,7 +16,7 @@ pipeline {
             bat 'npm run test'
             }
         }
-        stage('NPM deploy docker image tests') {
+        stage('Deploy docker image tests') {
             steps {
             bat 'docker build -t napetkov/student_app:%BUILD_NUMBER% .'
             // bat 'docker login -u %user%--password %pass%'
@@ -25,7 +25,7 @@ pipeline {
             bat 'docker push napetkov/student_app:latest'
             }
         }
-         stage('NPM deploy docker image tests') {
+         stage('Pull and run docker container') {
             steps {
             bat 'docker pull napetkov/student_app'
             bat 'docker-compose up -d' 
