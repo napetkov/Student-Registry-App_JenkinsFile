@@ -25,5 +25,11 @@ pipeline {
             bat 'docker push napetkov/student_app:latest'
             }
         }
+         stage('NPM deploy docker image tests') {
+            steps {
+            bat 'docker pull napetkov/student_app'
+            bat 'docker-compose up -d' 
+            }
+        }
     }
 }
